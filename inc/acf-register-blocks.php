@@ -42,11 +42,11 @@ if ( ! function_exists( 'pitchfork_plugin_template_custom_category' ) ) {
 function pitchfork_plugin_template_acf_blocks_init() {
 
 	// Icons kept in a separate file.
-	require_once STARTER_PLUGIN_BASE_PATH . '/acf-block-templates/icons.php';
+	require_once PITCHFORK_GLIDE . '/acf-block-templates/icons.php';
 
 	// UDS Profiles, container block for directories.
 	register_block_type(
-		STARTER_PLUGIN_BASE_PATH . 'acf-block-templates/profiles',
+		PITCHFORK_GLIDE . 'acf-block-templates/profiles',
 		array(
 			'icon'     => $block_icon->users_rectangle,
 			'category' => 'pitchfork-plugin-template',

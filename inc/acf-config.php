@@ -13,7 +13,7 @@
  * @return $path
  */
 function starter_plugin_acf_json_save_point( $path ) {
-	$path = STARTER_PLUGIN_BASE_PATH . '/acf-json';
+	$path = PITCHFORK_GLIDE . '/acf-json';
 	return $path;
 }
 add_filter( 'acf/settings/save_json', 'starter_plugin_acf_json_save_point' );
@@ -25,7 +25,7 @@ add_filter( 'acf/settings/save_json', 'starter_plugin_acf_json_save_point' );
  * @return $paths
  */
 function starter_plugin_acf_json_load_point( $paths ) {
-	$paths[] = STARTER_PLUGIN_BASE_PATH . '/acf-json';
+	$paths[] = PITCHFORK_GLIDE . '/acf-json';
 	return $paths;
 }
 add_filter( 'acf/settings/load_json', 'starter_plugin_acf_json_load_point' );

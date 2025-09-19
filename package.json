@@ -1,8 +1,8 @@
 {
-  "name": "pitchfork-plugin-template",
-  "description": "An ASU Engineering plugin, designed for use with the Pitchfork theme.",
+  "name": "pitchfork-glide",
+  "description": "A block set for WP incorporating Glide.js and elements from the UDS system.",
   "version": "0.0.1",
-  "repository": "asuengineering/pitchfork-plugin-template",
+  "repository": "asuengineering/pitchfork-glide",
   "license": "MIT",
   "dependencies": {
     "gulp-wp": "^0.6.9",
