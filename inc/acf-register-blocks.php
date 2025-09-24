@@ -14,43 +14,43 @@
  * the block_categories_all() filter to do this.
  */
 
-if ( ! function_exists( 'pitchfork_plugin_template_custom_category' ) ) {
+if ( ! function_exists( 'pitchfork_glide_custom_category' ) ) {
 	/**
 	 * Merges our custom category in with the others.
 	 *
 	 * @param array                   $categories The existing block categories.
 	 * @param WP_Block_Editor_Context $editor_context Editor context.
 	 */
-	function pitchfork_people_custom_category( $categories, $editor_context ) {
+	function pitchfork_glide_custom_category( $categories, $editor_context ) {
 		return array_merge(
 			$categories,
 			array(
 				array(
-					'slug'  => 'pitchfork-plugin-template',
-					'title' => __( 'Pitchfork plugin', 'pitchfork-plugin-template' ),
+					'slug'  => 'pitchfork-glide',
+					'title' => __( 'Pitchfork Glide', 'pitchfork-glide' ),
 				),
 			)
 		);
 	}
 }
-// add_filter( 'block_categories_all', 'pitchfork_plugin_template_custom_category', 10, 2 );
+add_filter( 'block_categories_all', 'pitchfork_glide_custom_category', 30, 2 );
 
 /**
  * Register blocks.
  */
 
-function pitchfork_plugin_template_acf_blocks_init() {
+function pitchfork_glide_acf_blocks_init() {
 
 	// Icons kept in a separate file.
 	require_once PITCHFORK_GLIDE . '/acf-block-templates/icons.php';
 
-	// UDS Profiles, container block for directories.
+	// UDS Carousel, container block for various carousel configurations.
 	register_block_type(
-		PITCHFORK_GLIDE . 'acf-block-templates/profiles',
+		PITCHFORK_GLIDE . 'acf-block-templates/carousel',
 		array(
-			'icon'     => $block_icon->users_rectangle,
-			'category' => 'pitchfork-plugin-template',
+			'icon'     => $block_icon->gallery_thumbnails,
+			'category' => 'pitchfork-carousel',
 		)
 	);
 }
-// add_action( 'acf/init', 'pitchfork_plugin_template_acf_blocks_init' );
+add_action( 'acf/init', 'pitchfork_glide_acf_blocks_init', 30, 2 );

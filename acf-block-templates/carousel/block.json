@@ -1,0 +1,31 @@
+{
+	"name": "acf/pf-carousel",
+	"title": "Carousel",
+	"description": "Wrapper block for various forms of a carousel",
+	"category": "pitchfork-glide",
+	"icon": "star-filled",
+	"keywords": [
+		"carousel"
+	],
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "carousel.php"
+	},
+	"supports": {
+		"anchor": true,
+		"spacing": {
+			"margin": [
+				"top",
+				"bottom"
+			],
+			"padding": false
+		},
+		"classname": true,
+		"align": false,
+		"color": {
+			"background": false,
+			"text": false,
+			"link": false
+		}
+	}
+}
