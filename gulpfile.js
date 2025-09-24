@@ -16,7 +16,7 @@ const gulpWP = require('gulp-wp')(gulp, config);
  *
  */
 
-gulp.task("upboot", function (done) {
+gulp.task("up-glide", function (done) {
 
 	var paths = {
 		"node": "./node_modules",
@@ -24,12 +24,15 @@ gulp.task("upboot", function (done) {
 	}
 
 	/** ----------------------------------------------------------
-	Part 1. Assembling the assets for UDS Bootstrap design kit.
+	Copy assets for glide.js into the dist folder
 	------------------------------------------------------------- */
-	// Copy UDS SCSS files from the node /src folder.
 	gulp
-		.src(paths.node + "/@asu/unity-bootstrap-theme/src/scss/_custom-asu-variables.scss")
-		.pipe(gulp.dest(paths.dev + "/styles/unity-bootstrap-theme"));
+		.src(paths.node + "/@glidejs/glide/dist/css/glide.core.min.css")
+		.pipe(gulp.dest(paths.dev + "/glidejs"));
+
+	gulp
+		.src(paths.node + "/@glidejs/glide/dist/glide.min.js")
+		.pipe(gulp.dest(paths.dev + "/glidejs"));
 
 	done();
 });

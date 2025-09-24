@@ -27,5 +27,9 @@
 			"text": false,
 			"link": false
 		}
-	}
+	},
+	"viewScript": "file:./view.js",
+	"style": [
+		"glidejs-style"
+	]
 }
