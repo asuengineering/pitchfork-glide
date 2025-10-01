@@ -85,6 +85,7 @@ $output .= '</div>';
 		data-glide-gap="16"
 		data-glide-focus-at="center"
 		data-glide-peek='{"before":160,"after":160}'
+		data-glide-breakpoints='{"768": { "peek": 0, "gap": 8 }}'
 		data-glide-animation-duration="600">
 
 		<?php echo $slides; ?>

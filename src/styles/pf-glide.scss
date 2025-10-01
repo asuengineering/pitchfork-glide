@@ -7,31 +7,8 @@
 // Import SASS variables from Unity Boostrap Theme
 @import "unity-bootstrap-theme/_custom-asu-variables";
 @import 'media-queries';
-// @import 'uds-carousel-styles';
 @import 'carousel-images';
 
 
-// /* Edge shadows hinting more content */
-// .pf-carousel {
-// 	position: relative;
-// }
-
-// .pf-carousel figure {
-// 	margin-bottom: 0;
-// }
-
-// .pf-carousel .glide__track {
-// 	position: relative;
-// 	overflow: hidden;
-// }
-
-// .pf-carousel[data-has-shadow="true"] .glide__track::after {
-// 	content: "";
-// 	position: absolute;
-// 	inset: 0;
-// 	pointer-events: none;
-// 	/* tweak the 48px/96px stops to taste */
-// 	background:
-// 		linear-gradient(to right, rgba(25, 25, 25, .2), 48px, rgba(255, 255, 255, 0) 96px),
-// 		linear-gradient(to left, rgba(25, 25, 25, .2), 48px, rgba(255, 255, 255, 0) 96px);
-// }
+// Media query usage = @include media-breakpoint-up($md) {}
+// @import 'uds-carousel-styles';
