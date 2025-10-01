@@ -1,0 +1,142 @@
+/* --------------------------------------------------------------
+	PF Carousel – Styles for center + peak layout.
+	Used for image carousels with or without captions.
+-------------------------------------------------------------- */
+
+$break-sm: 576px;
+$color-gray-7: #191919;
+$color-gray-2: #d0d0d0;
+$color-gray-1: #e8e8e8;
+
+/* Root */
+.glide {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	position: relative; // for edge-fade overlay stacking context
+}
+
+/* Track + slides */
+.glide__track {
+	position: relative;
+	overflow: hidden; // ensure peeked edges clip correctly
+}
+
+.glide__slides {
+	margin-bottom: 0;
+	touch-action: auto;
+	display: flex;
+	align-items: center; // centers active slide vertically if slides vary
+
+	.uds-figure {
+		margin-bottom: 0;
+
+		.uds-figure-caption {
+			min-height: 10rem;
+		}
+	}
+}
+
+/* Edge-fade shadow.
+   Toggle via data-has-shadow="true" on the root wrapper. */
+.pf-carousel[data-has-shadow="true"] .glide__track::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background:
+		linear-gradient(to right, rgba(25, 25, 25, .2), 48px, rgba(255, 255, 255, 0) 96px),
+		linear-gradient(to left, rgba(25, 25, 25, .2), 48px, rgba(255, 255, 255, 0) 96px);
+}
+
+/* Arrows */
+.glide__arrows {
+	z-index: 2;
+	align-self: center;
+	display: flex;
+	gap: .5rem;
+}
+
+.glide__arrow {
+	color: $color-gray-7;
+	width: 4rem;
+	height: 4rem;
+	margin: 0 .5rem;
+	background-color: $color-gray-1;
+	border: 1px solid $color-gray-2;
+	border-radius: 50%;
+	font-size: 1.3rem;
+	text-shadow: 0 .25em .5em rgba(0, 0, 0, .1);
+	cursor: pointer;
+	line-height: 1;
+	transition: opacity 150ms ease, border 300ms ease-in-out;
+
+	&:hover {
+		border-color: white;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&.glide__arrow--disabled {
+		color: #e8e8e8;
+		background-color: #fafafa;
+		border: 1px solid #e8e8e8;
+		opacity: 1;
+		cursor: not-allowed;
+	}
+}
+
+/* Bullets */
+.glide__bullets {
+	z-index: 2;
+	list-style: none;
+	max-width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.glide__bullet {
+	transition: all 300ms ease-in-out;
+	background-color: $color-gray-2;
+	width: 1rem;
+	height: 1rem;
+	padding: 0;
+	border-radius: 50%;
+	border: 2px solid transparent;
+	cursor: pointer;
+	line-height: 0;
+	margin: .375rem;
+
+	&:hover,
+	&:focus {
+		border: 1px solid $color-gray-2;
+		background-color: $color-gray-7;
+		outline: none;
+	}
+
+	&.glide__bullet--active {
+		background-color: $color-gray-7;
+	}
+}
+
+/* Hide bullets on mobile viewports */
+@media (max-width: $break-sm) {
+	.glide {
+		gap: 21px;
+	}
+
+	.glide .glide__bullets {
+		display: none;
+	}
+}
+
+/* Optional cursors for drag affordance */
+.glide--swipeable {
+	cursor: grab;
+}
+
+.glide--dragging {
+	cursor: grabbing;
+}

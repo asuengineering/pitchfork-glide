@@ -21,15 +21,22 @@
 			"padding": false
 		},
 		"classname": true,
-		"align": false,
+		"align": [],
 		"color": {
 			"background": false,
 			"text": false,
 			"link": false
 		}
 	},
+	"attributes": {
+		"align": {
+			"type": "string",
+			"default": "full"
+		}
+	},
 	"viewScript": "file:./view.js",
 	"style": [
-		"glidejs-style"
+		"glidejs-style",
+		"pitchfork-glide"
 	]
 }
