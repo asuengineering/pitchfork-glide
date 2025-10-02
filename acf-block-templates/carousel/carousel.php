@@ -11,7 +11,19 @@
  * Set initial get_field declarations.
  */
 $showcaption = get_field('carousel_images_captions') ?? false;
+$showcounter = get_field('carousel_images_counter') ?? false;
 $imagelist = (array) get_field('carousel_images_gallery');
+
+/**
+ * Set operations mode - slider or carousel.
+ */
+$slidewrap = get_field('carousel_images_operation') ?? false;
+if ($slidewrap) {
+	$operation = 'data-glide-type="carousel"';
+} else {
+	$operation = 'data-glide-type="slider" data-glide-bounded="true"';
+}
+
 
 /**
  * Set block classes
@@ -60,8 +72,10 @@ foreach ($imagelist as $image_id) {
 	if ($showcaption) {
 		$slides .= '<figcaption class="figure-caption uds-figure-caption">';
 		$slides .= wp_get_attachment_caption($image_id);
-		$slides .= '</figcaption></figure></div></li>';
+		$slides .= '</figcaption>';
 	}
+
+	$slides .= '</figure></div></li>';
 
 	$bullets .= '<button type="button" class="glide__bullet" data-glide-dir="=' . $slide_count . '" aria-label="Slide view ' . $slide_count . '"></button>';
 	$slide_count++;
@@ -83,9 +97,7 @@ if ($showcaption) {
  * Create the block output.
  */
 $attr  = implode( ' ', $block_attr );
-$output = $anchor . ' class="' . $attr . '" style="' . $spacing . '"' . $shadow;
-
-
+$output = $anchor . ' class="' . $attr . '" style="' . $spacing . '"' . $operation . ' '. $shadow;
 
 /**
  * Print the output.
@@ -93,18 +105,16 @@ $output = $anchor . ' class="' . $attr . '" style="' . $spacing . '"' . $shadow;
 ?>
 
 <div <?php echo $output;?>
-	data-has-shadow="true"
-	data-glide-type="carousel"
 	data-glide-per-view="1"
 	data-glide-gap="16"
 	data-glide-focus-at="center"
 	data-glide-peek='{"before":160,"after":160}'
 	data-glide-breakpoints='{"768": { "peek": 0, "gap": 8 }}'
-	data-glide-animation-duration="600">
+	data-glide-animation-duration="300">
 
 	<?php echo $slides; ?>
 
-	<?php echo $bullets; ?>
+	<?php echo $showcounter ? $bullets : ''; ?>
 
 	<!-- Previous / Next -->
 	<div class="glide__arrows" data-glide-el="controls">

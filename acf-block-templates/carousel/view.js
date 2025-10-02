@@ -54,18 +54,75 @@
 		return opts;
 	}
 
+	function setArrowState(root, glide) {
+		if (!root || !glide) return;
+
+		const prevBtn = root.querySelector('.glide__arrow.glide__arrow--left');
+		const nextBtn = root.querySelector('.glide__arrow.glide__arrow--right');
+
+		// Reliable slide count from DOM
+		const total = root.querySelectorAll('.glide__slide').length;
+
+		// Glide settings + index fallbacks
+		const perView = (glide && glide.settings && Number(glide.settings.perView)) || 1;
+		const index = (typeof glide.index === 'number') ? glide.index : Number(glide.index) || 0;
+
+		// last index visible (0-based). Use Math.max to avoid negative.
+		const lastIndex = Math.max(0, Math.ceil(total - perView));
+
+		// At-start / at-end boolean flags
+		const atStart = index <= 0;
+		const atEnd = index >= lastIndex;
+
+		// Toggle root classes for styling (used to control shadow/peek display)
+		root.classList.toggle('pf-carousel--at-start', atStart);
+		root.classList.toggle('pf-carousel--at-end', atEnd);
+
+		// Prev button
+		if (prevBtn) {
+			prevBtn.disabled = atStart; // native attribute -> unfocusable & non-clickable
+			prevBtn.setAttribute('aria-disabled', atStart ? 'true' : 'false');
+			prevBtn.classList.toggle('is-disabled', atStart); // optional
+		}
+
+		// Next button
+		if (nextBtn) {
+			nextBtn.disabled = atEnd;
+			nextBtn.setAttribute('aria-disabled', atEnd ? 'true' : 'false');
+			nextBtn.classList.toggle('is-disabled', atEnd);
+		}
+	}
+
+
 	function initInstance(el) {
 		if (!window.Glide) {
-			console.error('[PF Carousel] Glide not found on window. Did you load glidejs-script first?');
+			console.error('[PF Carousel] Glide not found.');
 			return;
 		}
-		if (el._pfGlide) return; // don’t double-init
+		if (el._pfGlide) return;
 
 		const options = parseGlideOptionsFromAttrs(el);
-		// Keep a reference for debugging
+
+		// If bounded mode is requested, force non-loop behavior
+		const bounded = el.getAttribute('data-glide-bounded') === 'true' || options.bounded === true;
+		if (bounded) {
+			options.type = 'slider';   // non-looping
+			options.rewind = false;    // do not rewind to start
+			// Optionally set bound flag as well
+			options.bound = true;
+		}
+
 		const glide = new window.Glide(el, options);
 		glide.mount();
 		el._pfGlide = glide;
+
+		// Run once now to set arrow states
+		setArrowState(el, glide);
+
+		// Update arrow states after each run (user action or programmatic)
+		glide.on('run.after', () => setArrowState(el, glide));
+		glide.on('mount.after', () => setArrowState(el, glide));
+		glide.on('resize', () => setArrowState(el, glide));
 	}
 
 	function initAll() {

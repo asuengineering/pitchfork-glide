@@ -37,8 +37,12 @@ $color-gray-1: #e8e8e8;
 	}
 }
 
-/* Edge-fade shadow.
-   Toggle via data-has-shadow="true" on the root wrapper. */
+/**
+ * Edge fade shadow.
+ *  - Present when carousel + captions on both sides.
+ *  - Left / right shadows expressed individually in slider mode.
+ */
+
 .pf-carousel[data-has-shadow="true"] .glide__track::after {
 	content: "";
 	position: absolute;
@@ -49,7 +53,29 @@ $color-gray-1: #e8e8e8;
 		linear-gradient(to left, rgba(25, 25, 25, .2), 48px, rgba(255, 255, 255, 0) 96px);
 }
 
-/* Arrows */
+/* Remove left shadow when at start */
+.pf-carousel.pf-carousel--at-start[data-has-shadow="true"] .glide__track::after {
+	background:
+		none,
+		linear-gradient(to left, rgba(25, 25, 25, .2), 48px, rgba(255, 255, 255, 0) 96px);
+}
+
+/* Remove right shadow when at end */
+.pf-carousel.pf-carousel--at-end[data-has-shadow="true"] .glide__track::after {
+	background:
+		linear-gradient(to right, rgba(25, 25, 25, .2), 48px, rgba(255, 255, 255, 0) 96px),
+		none;
+}
+
+/* If both at-start and at-end (single slide), remove both */
+.pf-carousel.pf-carousel--at-start.pf-carousel--at-end[data-has-shadow="true"] .glide__track::after {
+	content: none;
+}
+
+/**
+ * Arrows
+ */
+
 .glide__arrows {
 	z-index: 2;
 	align-self: center;
@@ -88,7 +114,10 @@ $color-gray-1: #e8e8e8;
 	}
 }
 
-/* Bullets */
+/**
+ * Bullets
+ */
+
 .glide__bullets {
 	z-index: 2;
 	list-style: none;
@@ -154,6 +183,7 @@ $color-gray-1: #e8e8e8;
 @include media-breakpoint-up($lg) {
 	.glide__slides .uds-figure .uds-figure-caption {
 		min-height: 10rem;
+		padding-right: 8rem;
 	}
 }
 

@@ -1,14 +1,14 @@
 {
-	"name": "acf/pf-carousel",
-	"title": "Carousel",
-	"description": "Wrapper block for various forms of a carousel",
+	"name": "acf/pf-carousel-images",
+	"title": "UDS Carousel (Images)",
+	"description": "Cycle your way through a collection of images.",
 	"category": "pitchfork-glide",
 	"icon": "star-filled",
 	"keywords": [
 		"carousel"
 	],
 	"acf": {
-		"mode": "preview",
+		"mode": "edit",
 		"renderTemplate": "carousel.php"
 	},
 	"supports": {
@@ -26,7 +26,8 @@
 			"background": false,
 			"text": false,
 			"link": false
-		}
+		},
+		"mode": false
 	},
 	"attributes": {
 		"align": {

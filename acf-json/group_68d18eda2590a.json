@@ -1,7 +1,70 @@
 {
     "key": "group_68d18eda2590a",
-    "title": "Carousel (Image)",
+    "title": "UDS Carousel (Images)",
     "fields": [
+        {
+            "key": "field_68ddb364782b7",
+            "label": "Show image captions?",
+            "name": "carousel_images_captions",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Enabling image captions will also enable the previous\/next shadows.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
+        },
+        {
+            "key": "field_68debe07bae47",
+            "label": "Display slide count indicator?",
+            "name": "carousel_images_counter",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Slide count indicator dots are optional on all carousels.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
+        },
+        {
+            "key": "field_68debbcfbae46",
+            "label": "Should the images wrap?",
+            "name": "carousel_images_operation",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "Should the carousel images wrap from the last image back to the first?",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui_on_text": "Wrapped",
+            "ui_off_text": "Not wrapped",
+            "ui": 1
+        },
         {
             "key": "field_68d1b24d8aa09",
             "label": "Which images?",
@@ -29,27 +92,6 @@
             "mime_types": "jpg, jpeg, png, webp, gif, avif",
             "insert": "append",
             "preview_size": "medium"
-        },
-        {
-            "key": "field_68ddb364782b7",
-            "label": "Show image captions?",
-            "name": "carousel_images_captions",
-            "aria-label": "",
-            "type": "true_false",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "message": "",
-            "default_value": 1,
-            "allow_in_bindings": 0,
-            "ui_on_text": "Show",
-            "ui_off_text": "Hide",
-            "ui": 1
         }
     ],
     "location": [
@@ -57,7 +99,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": "acf\/pf-carousel"
+                "value": "acf\/pf-carousel-images"
             }
         ]
     ],
@@ -70,5 +112,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1759359931
+    "modified": 1759437138
 }
