@@ -29,6 +29,27 @@
             "mime_types": "jpg, jpeg, png, webp, gif, avif",
             "insert": "append",
             "preview_size": "medium"
+        },
+        {
+            "key": "field_68ddb364782b7",
+            "label": "Show image captions?",
+            "name": "carousel_images_captions",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 1,
+            "allow_in_bindings": 0,
+            "ui_on_text": "Show",
+            "ui_off_text": "Hide",
+            "ui": 1
         }
     ],
     "location": [
@@ -49,5 +70,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1758747813
+    "modified": 1759359931
 }

@@ -10,6 +10,7 @@
 /**
  * Set initial get_field declarations.
  */
+$showcaption = get_field('carousel_images_captions') ?? false;
 $imagelist = (array) get_field('carousel_images_gallery');
 
 /**
@@ -43,7 +44,7 @@ if ( ! empty( $block['anchor'] ) ) {
 }
 
 /**
- * Block logic here.
+ * Build slide track and bullet navigation.
  */
 
 $slides = '<div class="glide__track" data-glide-el="track"><ul class="glide__slides">';
@@ -55,9 +56,12 @@ foreach ($imagelist as $image_id) {
     $slides .= '<li class="glide__slide">';
 	$slides .= '<div class="uds-img"><figure class="uds-figure">';
     $slides .= wp_get_attachment_image($image_id, 'full', '', array('class' => 'uds-img figure-img img-fluid'));
-	$slides .= '<figcaption class="figure-caption uds-figure-caption">';
-	$slides .= wp_get_attachment_caption($image_id);
-    $slides .= '</figcaption></figure></div></li>';
+
+	if ($showcaption) {
+		$slides .= '<figcaption class="figure-caption uds-figure-caption">';
+		$slides .= wp_get_attachment_caption($image_id);
+		$slides .= '</figcaption></figure></div></li>';
+	}
 
 	$bullets .= '<button type="button" class="glide__bullet" data-glide-dir="=' . $slide_count . '" aria-label="Slide view ' . $slide_count . '"></button>';
 	$slide_count++;
@@ -67,44 +71,50 @@ $slides .= '</div>';
 $bullets .= '</div>';
 
 /**
- * Create the outer wrapper for the block output.
+ * Data attributes for glide.js
  */
-$attr  = implode( ' ', $block_attr );
-$output = '<div ' . $anchor . ' class="' . $attr . '" style="' . $spacing . '">';
+if ($showcaption) {
+	$shadow = 'data-has-shadow="true"';
+} else {
+	$shadow = '';
+}
 
 /**
- * Close the block, echo the output.
+ * Create the block output.
  */
-$output .= '</div>';
+$attr  = implode( ' ', $block_attr );
+$output = $anchor . ' class="' . $attr . '" style="' . $spacing . '"' . $shadow;
 
+
+
+/**
+ * Print the output.
+ */
 ?>
-	<div class="pf-carousel pf-carousel-images glide"
-		data-has-shadow="true"
-		data-glide-type="carousel"
-		data-glide-per-view="1"
-		data-glide-gap="16"
-		data-glide-focus-at="center"
-		data-glide-peek='{"before":160,"after":160}'
-		data-glide-breakpoints='{"768": { "peek": 0, "gap": 8 }}'
-		data-glide-animation-duration="600">
 
-		<?php echo $slides; ?>
+<div <?php echo $output;?>
+	data-has-shadow="true"
+	data-glide-type="carousel"
+	data-glide-per-view="1"
+	data-glide-gap="16"
+	data-glide-focus-at="center"
+	data-glide-peek='{"before":160,"after":160}'
+	data-glide-breakpoints='{"768": { "peek": 0, "gap": 8 }}'
+	data-glide-animation-duration="600">
 
-		<?php echo $bullets; ?>
+	<?php echo $slides; ?>
 
-		<!-- Previous / Next -->
-		<div class="glide__arrows" data-glide-el="controls">
-			<button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">
-				<span class="fa-solid fa-chevron-left arrow-icon" title="Previous image"></span>
-			</button>
-			<button class="glide__arrow glide__arrow--right" data-glide-dir="&gt;">
-				<span class="fa-solid fa-chevron-right arrow-icon" title="Next image"></span>
-			</button>
-		</div>
+	<?php echo $bullets; ?>
 
+	<!-- Previous / Next -->
+	<div class="glide__arrows" data-glide-el="controls">
+		<button class="glide__arrow glide__arrow--left" data-glide-dir="&lt;">
+			<span class="fa-solid fa-chevron-left arrow-icon" title="Previous image"></span>
+		</button>
+		<button class="glide__arrow glide__arrow--right" data-glide-dir="&gt;">
+			<span class="fa-solid fa-chevron-right arrow-icon" title="Next image"></span>
+		</button>
 	</div>
 
-<?php
-
-// echo $output;
+</div>
 
