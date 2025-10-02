@@ -1,7 +1,7 @@
 {
   "name": "pitchfork-glide",
   "description": "A block set for WP incorporating Glide.js and elements from the UDS system.",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "repository": "asuengineering/pitchfork-glide",
   "license": "MIT",
   "dependencies": {

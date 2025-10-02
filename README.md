@@ -25,17 +25,19 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 This plugin contains blocks that are constructed with the use of Advanced Custom Fields Pro.
 
 - The ACF Pro plugin is also required by the Pitchfork theme.
-- The theme contains a script which will prompt the user to install this plugin upon theme activation.
 - ASU Engineering provides a licensed copy of this plugin within its standard distribution of WordPress on the Pantheon hosting platform.
 
-Plugin updates can optionally be managed from the admin dashboard through the use of [Git Updater](https://git-updater.com/).
+Plugin updates can optionally be managed from the admin dashboard through the use of [Git Updater](https://git-updater.com/) or [WP Pusher](https://wppusher.com).
 
 ## Includes
 
+- This plugin implements styles and cofigurations of the [Glide.js](https://glidejs.com/) library that can be found within the [UDS React Core library](https://asu.github.io/asu-unity-stack/@asu/unity-react-core/).
+- However, the `@asu/unity-react-core` library is not a dependency and is never included or enqueued directly.
+
 ## Development
 
-- Run `npm install` and `composer install` prior to local development.
-- SASS and JS compile & watch tasks are triggered via WP-Gulp and `npm start` from the project root.
+- Run `npm install` prior to local development.
+- SASS and JS compile & watch tasks are triggered via Gulp-WP and `npx gulp-wp` from the project root.
 
 ## Release Notes
 

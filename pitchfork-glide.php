@@ -5,7 +5,7 @@
  * Description:     A block set for WP incorporating Glide.js and elements from the UDS system.
  * Author:          ASU Engineering
  * Author URI:      https://github.com/asuengineering
- * Version:         0.0.1
+ * Version:         1.0.0
  *
  * @package         pitchfork-glide
  * Text Domain:     pitchfork-glide
